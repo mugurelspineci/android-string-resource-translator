@@ -170,8 +170,13 @@ namespace AndroidProjectManipulator
                  
                     for(i = 0; i < TranslatingNodes.Count; i++)
                     {
-                        string translated_string = translated[i].Trim();
+                        string translated_string = translated[i];
                         XmlNode cnode = TranslatingNodes[i];
+
+                        if (translated_string != null)
+                        {
+                            translated_string = translated_string.Trim();
+                        }
 
                         if (translated_string == null || translated_string.StartsWith(cnode.InnerXml.Trim()))
                         {
@@ -239,11 +244,11 @@ namespace AndroidProjectManipulator
                     string language_extension_dir = DestLanguage.ToString();
 
                     // HACK
-                    if (language_extension_dir.Equals("zh-CHS"))
+                    if (language_extension_dir.Equals("zh-CHS") || language_extension_dir.Equals("zh-rCHS"))
                     {
                         language_extension_dir = "zh";
                     }
-                    if (language_extension_dir.Equals("zh-CHT"))
+                    if (language_extension_dir.Equals("zh-CHT") || language_extension_dir.Equals("zh-rCHT"))
                     {
                         language_extension_dir = "zh-rTW";
                     }
